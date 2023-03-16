@@ -28,7 +28,9 @@ export const Results = ({ specialty, hospital, clearSearch }: SearchType) => {
 
   useEffect(() => {
     (async () => {
-      const specs = await axios.get("/api/consultantlisting");
+      const specs = await axios.get(
+        "https://gc-interview.azurewebsites.net/api/consultantlisting"
+      );
       const afterSearch = specs.data.filter(
         (item: DataType) =>
           item.Specialty.toLowerCase().includes(specialty.toLowerCase()) &&
