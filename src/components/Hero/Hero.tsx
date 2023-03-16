@@ -18,11 +18,13 @@ export const Hero = ({
 }: HeroType) => {
   return (
     <section
-      className="text-center bg-black/30"
+      className="text-center bg-black/30 bg-cover"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
       <section className="container mx-auto py-14">
-        <h2 className="text-5xl text-white">Search for a Specialist</h2>
+        <h2 className="text-5xl text-white px-4 xl:px-0">
+          Search for a Specialist
+        </h2>
         <Search
           firstValue={firstValue}
           secondValue={secondValue}

@@ -3,8 +3,8 @@ import { ReactNode } from "react";
 type ButtonType = {
   type?: "default" | "outline";
   children: ReactNode;
-  className?: string;
-  onClick: () => void;
+  className: string;
+  onClick?: () => void;
 };
 
 export const Button = ({

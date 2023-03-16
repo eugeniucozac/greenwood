@@ -17,11 +17,11 @@ export const Search = ({
 }: SearchType) => {
   return (
     <section className="mt-10 flex justify-center w-full">
-      <div className="relative mb-4 flex w-full flex-wrap items-stretch">
-        <div className="relative w-2/5">
+      <div className="relative mb-4 flex w-full flex-wrap items-stretch px-10 xl:px-0">
+        <div className="relative xl:w-2/5 w-full">
           <input
             type="search"
-            className="relative w-full bg-white border-r-2 m-0 px-10 py-6 -mr-px block flex-auto border-solid border-neutral-300 bg-clip-padding text-xl font-normal text-neutral-700 outline-none transition duration-300 ease-in-out focus:border-primary-600 focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
+            className="relative w-full bg-white xl:border-r-2 border-b-2 xl:border-b-0 m-0 px-10 py-6 -mr-px block flex-auto border-solid border-neutral-300 bg-clip-padding text-xl font-normal text-neutral-700 outline-none transition duration-300 ease-in-out focus:border-primary-600 focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
             placeholder="Hip"
             aria-label="Search"
             value={firstValue}
@@ -31,7 +31,7 @@ export const Search = ({
             Enter treatment name*
           </label>
         </div>
-        <div className="relative w-2/5">
+        <div className="relative xl:w-2/5 w-full">
           <input
             type="search"
             className="relative w-full bg-white m-0 px-10 py-6 -mr-px block flex-auto border-solid border-neutral-300 bg-clip-padding text-xl font-normal text-neutral-700 outline-none transition duration-300 ease-in-out focus:border-primary-600 focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
@@ -44,7 +44,7 @@ export const Search = ({
             Enter postcode or city*
           </label>
         </div>
-        <Button onClick={onSubmit} className="w-1/5">
+        <Button onClick={onSubmit} className="xl:w-1/5 w-full py-6">
           Find Specialist
         </Button>
       </div>
