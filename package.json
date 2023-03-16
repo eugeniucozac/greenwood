@@ -47,6 +47,7 @@
       "last 1 safari version"
     ]
   },
+  "proxy": "https://gc-interview.azurewebsites.net/",
   "devDependencies": {
     "postcss": "^8.4.14",
     "tailwindcss": "^3.1.5"
