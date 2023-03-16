@@ -9,7 +9,18 @@ import {
   faUpRightFromSquare,
 } from "@fortawesome/free-solid-svg-icons";
 
-export const Specialist = ({ data }: any) => {
+type DataType = {
+  data: {
+    Title: string;
+    ProfileImage: string;
+    Hospital: string;
+    PhoneNo: string;
+    Specialty: string;
+    ProfessionalBackground: string;
+  };
+};
+
+export const Specialist = ({ data }: DataType) => {
   const [more, setMore] = useState(true);
   const maxLength = 300;
   const excerpt = data.ProfessionalBackground.slice(0, maxLength);

@@ -5,7 +5,22 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { Pagination } from "../Pagination";
 
-export const Results = ({}) => {
+type SearchType = {
+  specialty: string;
+  hospital: string;
+  clearSearch: () => void;
+};
+
+type DataType = {
+  Title: string;
+  ProfileImage: string;
+  Hospital: string;
+  PhoneNo: string;
+  Specialty: string;
+  ProfessionalBackground: string;
+};
+
+export const Results = ({ specialty, hospital, clearSearch }: SearchType) => {
   const perPage = 5;
   const [specialists, setSpecialists] = useState([]);
   const [data, setData] = useState([]);
@@ -14,12 +29,17 @@ export const Results = ({}) => {
   useEffect(() => {
     (async () => {
       const specs = await axios.get("/api/consultantlisting");
-      setSpecialists(specs.data);
-      setData(specs.data.slice(0, perPage));
+      const afterSearch = specs.data.filter(
+        (item: DataType) =>
+          item.Specialty.toLowerCase().includes(specialty.toLowerCase()) &&
+          item.Hospital.toLowerCase().includes(hospital.toLowerCase())
+      );
+      setSpecialists(afterSearch);
+      setData(afterSearch.slice(0, perPage));
     })();
-  }, []);
+  }, [specialty, hospital]);
 
-  const handleChangePage = (val: any) => {
+  const handleChangePage = (val: number) => {
     setPage(val);
     const from = val === 1 ? 0 : (val - 1) * perPage;
     const to = perPage * val;
@@ -35,7 +55,10 @@ export const Results = ({}) => {
         <h3 className="text-[2.6rem] text-darkBlue mb-1">Search Results</h3>
         <h4 className="text-grey text-[1.3rem] mb-4 flex flex-col lg:flex-row">
           Displaying results for: hip, Near: Stansted CM24 1RW, UK{" "}
-          <span className="lg:ml-4 ml-0 mt-2 lg:mt-0 text-darkBlue flex w-full text-base cursor-pointer items-center w-36">
+          <span
+            onClick={clearSearch}
+            className="lg:ml-4 ml-0 mt-2 lg:mt-0 text-darkBlue flex w-full text-base cursor-pointer items-center lg:w-36"
+          >
             <FontAwesomeIcon icon={faXmark} className="mr-2" /> Clear Search
           </span>
         </h4>
@@ -44,13 +67,15 @@ export const Results = ({}) => {
         <Specialist key={iter} data={specialist} />
       ))}
       <p className="text-black my-5 text-xl">
-        Showing <a className="text-blue">{perPage}</a> of{" "}
-        <a className="text-blue">{totalItems}</a> results
+        Showing{" "}
+        <a className="text-blue">
+          {perPage > data.length ? data.length : perPage}
+        </a>{" "}
+        of <a className="text-blue">{totalItems}</a> results
       </p>
       <Pagination
         total={totalPages}
         current={page}
-        closestPages={1}
         onChange={handleChangePage}
         className="mb-10 mt-6"
       />

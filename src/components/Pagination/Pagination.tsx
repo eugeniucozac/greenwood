@@ -1,4 +1,16 @@
-export const Pagination = ({ className, total, current, onChange }: any) => {
+type SearchType = {
+  total: number;
+  className?: string;
+  current: number;
+  onChange: (val: number) => void;
+};
+
+export const Pagination = ({
+  className,
+  total,
+  current,
+  onChange,
+}: SearchType) => {
   const pages = Array.from({ length: total }, (_, i) => i + 1);
   return (
     <ul className={`${className} flex`}>
